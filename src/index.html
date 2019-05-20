@@ -25,10 +25,10 @@
   					Token price is <span class="token-price"></span> Ether. You currently have <span class="dapp-balance"></span>&nbsp: DAPP. 
   				</p>
   				<br>
-  				<form role="form">
+  				<form onSubmit="App.buyTokens(); return false;" role="form">
   					<div class="form-group">
   						<div class="input-group">
-  							<input id="numberOfToken" class="form-control input-lg" type="number" name="number" value="1" min="1" pattern="[0-9]"></input>
+  							<input id="numberOfTokens" class="form-control input-lg" type="number" name="number" value="1" min="1" pattern="[0-9]"></input>
   							<span class="input-group-btn">
   								<button type="submit" class="btn btn-primary btn-lg">Buy Tokens</button>
   							</span>
@@ -41,7 +41,7 @@
   					</div>
   				</div>
   				<p>
-  					<span class="tokens-sold"></span> / <span class="tokens-available"></span>tokens sold
+  					<span class="tokens-sold"></span> / <span class="tokens-available"></span> tokens sold
   				</p>
   				<hr>
   				<p id="accountAddress"></p>

@@ -1,0 +1,30 @@
+truffle migrate --reset
+truffle test
+
+truffle console
+DappToken.deployed().then(function(instance) { tokenInstance = instance; })
+or: let instance = await MetaCoin.deployed()
+tokenInstance --> [abstraction of the instance]
+tokenInstance.name()
+tokenInstance.symbol()
+tokenInstance.totalSupply().then(function(s) { supply = s;})
+supply.toNumber() --> 1000000
+
+web3.eth.getAccounts()
+
+----------------------------
+let accounts = await web3.eth.getAccounts()
+let admin = accounts[0]
+let tokenSale = await DappTokenSale.deployed()
+let token = await DappToken.deployed()
+let tokensAvailable = 750000
+token.transfer(tokenSale.address, tokensAvailable, {from: admin})
+token.balanceOf(tokenSale.address, {from: admin})
+-----------------------
+
+truffle console
+DappTokenSale.deployed().then(function(i){tokenSale=i;})
+DappToken.deployed().then(function(i){token=i;})
+tokensAvailable = 750000
+admin = web3.eth.accounts[0]
+token.transfer(tokenSale.address, tokensAvailable, { from: admin} )

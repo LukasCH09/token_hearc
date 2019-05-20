@@ -9,7 +9,7 @@ contract DappTokenSale {
 	DappToken public tokenContract;
 	//SafeMath public tokenMath;
 	uint256 public tokenPrice;
-	uint256 public tokenSold;
+	uint256 public tokensSold;
 	
 	using SafeMath for uint256;
 	
@@ -34,7 +34,7 @@ contract DappTokenSale {
 		require(tokenContract.balanceOf(address(this)) >= _numberOfTokens);
 		require(tokenContract.transfer(msg.sender, _numberOfTokens));
 		
-		tokenSold += _numberOfTokens;
+		tokensSold += _numberOfTokens;
 		emit Sell(msg.sender, _numberOfTokens);
 
 	}
@@ -44,7 +44,7 @@ contract DappTokenSale {
 		require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
 		//address payable admin_pay = admin;
 		//address payable testPayable = address(uint160(msg.sender));
-		selfdestruct(msg.sender);
+		//selfdestruct(msg.sender);
 
 	}
 }

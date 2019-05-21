@@ -19,7 +19,10 @@ let tokenSale = await DappTokenSale.deployed()
 let token = await DappToken.deployed()
 let tokensAvailable = 750000
 token.transfer(tokenSale.address, tokensAvailable, {from: admin})
-token.balanceOf(tokenSale.address, {from: admin})
+token.balanceOf(tokenSale.address).then(result => result.toNumber())
+let account2 = accounts[1]
+token.balanceOf(account2).then(result => result.toNumber())
+token.transfer(account2.address, tokensAvailable, {from: admin})
 -----------------------
 
 truffle console

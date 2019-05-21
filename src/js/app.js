@@ -97,7 +97,11 @@ App = {
 	buyTokens: function(){
 		$('#content').hide();
 		$('#loader').show();
-		var numberOfTokens = $('#numberOfTokens').val();
+
+		
+//		var numberOfTokens = $('#numberOfTokens').val();
+//		console.log("numberOfTokens: ", numberOfTokens);
+		
 		App.contracts.DappTokenSale.deployed().then(function(instance) {
 			return instance.buyTokens(numberOfTokens, {
 				from: App.account,

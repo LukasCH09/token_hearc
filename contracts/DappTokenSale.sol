@@ -1,7 +1,6 @@
 pragma solidity ^0.5.0;
 
 import "./DappToken.sol";
-import "./DappToken.sol";
 import "./SafeMath.sol";
 
 contract DappTokenSale {
@@ -24,18 +23,14 @@ contract DappTokenSale {
 		tokenPrice = _tokenPrice;
 	}
 
-	function multiply(uint x, uint y) internal pure returns (uint z) {
-		require(y == 0 || (z = x * y) / y == x);
-	}
-
-	function buyTokens(uint256 _numberOfTokens) public payable {
+	function buyTokens() public payable {
+		uint256 numTokens = msg.value.div(tokenPrice);
 		//require(msg.value == multiply(_numberOfTokens, tokenPrice));
-		require(msg.value == _numberOfTokens.mul(tokenPrice));
-		require(tokenContract.balanceOf(address(this)) >= _numberOfTokens);
-		require(tokenContract.transfer(msg.sender, _numberOfTokens));
+		require(tokenContract.balanceOf(address(this)) >= numTokens);
+		require(tokenContract.transfer(msg.sender, numTokens));
 		
-		tokensSold += _numberOfTokens;
-		emit Sell(msg.sender, _numberOfTokens);
+		tokensSold += numTokens;
+		emit Sell(msg.sender, numTokens);
 
 	}
 

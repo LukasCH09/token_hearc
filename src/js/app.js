@@ -91,7 +91,7 @@ App = {
 			$('.tokens-sold').html(App.tokensSold);
 			$('.tokens-available').html(App.tokensAvailable);
 
-			var progressPercent = Math.ceil(App.tokensSold / App.tokensAvailable) * 100;
+			var progressPercent = (App.tokensSold / App.tokensAvailable) * 100;
 			$('#progress').css('width', progressPercent + '%');
 
 			App.contracts.DappToken.deployed().then(function(instance) {
@@ -116,10 +116,10 @@ App = {
 		var numberOfTokens = $('#numberOfTokens').val();
 		
 		App.contracts.DappTokenSale.deployed().then(function(instance) {
-			return instance.buyTokens(numberOfTokens, {
+			return instance.buyTokens({
 				from: App.account,
 				value: numberOfTokens * App.tokenPrice.toNumber(),
-				gas: 500000
+				gas: 50000
 			});
 		}).then(function(result) {
 			console.log('Tokens bought...');

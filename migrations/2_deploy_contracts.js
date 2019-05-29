@@ -1,13 +1,13 @@
-const DappToken = artifacts.require("DappToken");
-const DappTokenSale = artifacts.require("DappTokenSale");
+const HearcToken = artifacts.require("HearcToken");
+const HearcTokenSale = artifacts.require("HearcTokenSale");
 const SafeMath = artifacts.require("SafeMath");
 
 module.exports = function(deployer) {
   deployer.deploy(SafeMath);
-  deployer.deploy(DappToken, 1000000).then(function() {
+  deployer.deploy(HearcToken, 1000000).then(function() {
   	// Token price is 0.001 Ether
   	var tokenPrice = 1000000000000000;
-  	return deployer.deploy(DappTokenSale, DappToken.address, tokenPrice);	
+  	return deployer.deploy(HearcTokenSale, HearcToken.address, tokenPrice);	
   });  
 
 };

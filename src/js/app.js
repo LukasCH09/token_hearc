@@ -26,18 +26,18 @@ App = {
 	},
 
 	initContracts: function() {
-		$.getJSON("DappTokenSale.json", function(dappTokenSale) {
-			App.contracts.DappTokenSale = TruffleContract(dappTokenSale);
-			App.contracts.DappTokenSale.setProvider(App.web3Provider);
-			App.contracts.DappTokenSale.deployed().then(function(dappTokenSale){
-				console.log("Dapp Token Sale address: ", dappTokenSale.address);
+		$.getJSON("HearcTokenSale.json", function(hearcTokenSale) {
+			App.contracts.HearcTokenSale = TruffleContract(hearcTokenSale);
+			App.contracts.HearcTokenSale.setProvider(App.web3Provider);
+			App.contracts.HearcTokenSale.deployed().then(function(hearcTokenSale){
+				console.log("Hearc Token Sale address: ", hearcTokenSale.address);
 			});
 		}).done(function() {
-			$.getJSON("DappToken.json", function(dappToken) {
-				App.contracts.DappToken = TruffleContract(dappToken);
-				App.contracts.DappToken.setProvider(App.web3Provider);
-				App.contracts.DappToken.deployed().then(function(dappToken){
-					console.log("Dapp Token address: ", dappToken.address);
+			$.getJSON("HearcToken.json", function(hearcToken) {
+				App.contracts.HearcToken = TruffleContract(hearcToken);
+				App.contracts.HearcToken.setProvider(App.web3Provider);
+				App.contracts.HearcToken.deployed().then(function(hearcToken){
+					console.log("Hearc Token address: ", hearcToken.address);
 				});
 
 				App.listenForEvents();
@@ -48,7 +48,7 @@ App = {
 
 	// Listen for events emitted from the contract
 	listenForEvents: function() {
-		App.contracts.DappTokenSale.deployed().then(function(instance) {
+		App.contracts.HearcTokenSale.deployed().then(function(instance) {
 			instance.Sell({}, {
 				fromBlock: 0,
 				toBlock: 'latest',
@@ -79,13 +79,13 @@ App = {
 			}
 		});
 
-		App.contracts.DappTokenSale.deployed().then(function(instance) {
-			dappTokenSaleInstance = instance
-			return dappTokenSaleInstance.tokenPrice();
+		App.contracts.HearcTokenSale.deployed().then(function(instance) {
+			hearcTokenSaleInstance = instance
+			return hearcTokenSaleInstance.tokenPrice();
 		}).then(function(_tokenPrice) {
 			App.tokenPrice = _tokenPrice;
 			$('.token-price').html(web3.fromWei(App.tokenPrice, "ether").toNumber());
-			return dappTokenSaleInstance.tokensSold();
+			return hearcTokenSaleInstance.tokensSold();
 		}).then(function(tokensSold) {
 			App.tokensSold = tokensSold.toNumber();
 			$('.tokens-sold').html(App.tokensSold);
@@ -94,11 +94,11 @@ App = {
 			var progressPercent = (App.tokensSold / App.tokensAvailable) * 100;
 			$('#progress').css('width', progressPercent + '%');
 
-			App.contracts.DappToken.deployed().then(function(instance) {
-				dappTokenInstance = instance;
-				return dappTokenInstance.balanceOf(App.account);
+			App.contracts.HearcToken.deployed().then(function(instance) {
+				hearcTokenInstance = instance;
+				return hearcTokenInstance.balanceOf(App.account);
 			}).then(function(balance) {
-				$('.dapp-balance').html(balance.toNumber());
+				$('.hearc-balance').html(balance.toNumber());
 				
 				App.loading = false;
 				loader.hide();
@@ -115,7 +115,7 @@ App = {
 		
 		var numberOfTokens = $('#numberOfTokens').val();
 		
-		App.contracts.DappTokenSale.deployed().then(function(instance) {
+		App.contracts.HearcTokenSale.deployed().then(function(instance) {
 			return instance.buyTokens({
 				from: App.account,
 				value: numberOfTokens * App.tokenPrice.toNumber(),

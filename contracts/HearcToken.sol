@@ -7,9 +7,9 @@ import "./SafeMath.sol";
 // ERC20 Token, with the addition of symbol, name and decimals and a
 // fixed supply
 // ----------------------------------------------------------------------------
-contract DappToken {
-    string public name = 'My Token';
-    string public symbol = 'MYT';
+contract HearcToken {
+    string public name = 'He-Arc Token';
+    string public symbol = 'HEARC';
     //uint8 public decimals;
     uint256 public totalSupply;
 

@@ -1,22 +1,22 @@
-var DappToken = artifacts.require("./DappToken.sol");
+var HearcToken = artifacts.require("./HearcToken.sol");
 
-contract('DappToken', function(accounts){
+contract('HearcToken', function(accounts){
 	var tokenInstance;
 
 	it('initializes the contract with the current values', function() {
-		return DappToken.deployed().then(function(instance) {
+		return HearcToken.deployed().then(function(instance) {
 			tokenInstance = instance;
 			return tokenInstance.name();
 		}).then(function(name) {
-			assert.equal(name, 'My Token', ' has the correct name');
+			assert.equal(name, 'He-Arc Token', ' has the correct name');
 			return tokenInstance.symbol();
 		}).then(function(symbol) {
-			assert.equal(symbol, 'MYT', ' has the correct symbol');
+			assert.equal(symbol, 'HEARC', ' has the correct symbol');
 		});
 	});
 
 	it('allocates the initial supply upon deployment', function(){
-		return DappToken.deployed().then(function(instance){
+		return HearcToken.deployed().then(function(instance){
 			tokenInstance = instance;
 			return tokenInstance.totalSupply();
 		}).then(function(totalSupply) {
@@ -28,7 +28,7 @@ contract('DappToken', function(accounts){
 	});
 
 	it('transfers token ownership', function() {
-		return DappToken.deployed().then(function(instance){
+		return HearcToken.deployed().then(function(instance){
 			tokenInstance = instance;
 			return tokenInstance.transfer.call(accounts[1], 999999999999);
 		}).then(assert.fail).catch(function(error) {
@@ -53,7 +53,7 @@ contract('DappToken', function(accounts){
 	});
 
 	it('approves tokens for delegated transfer', function() {
-		return DappToken.deployed().then(function(instance) {
+		return HearcToken.deployed().then(function(instance) {
 			tokenInstance = instance;
 			return tokenInstance.approve.call(accounts[1], 100);
 		}).then(function(success) {
@@ -73,7 +73,7 @@ contract('DappToken', function(accounts){
 
 
 	it('hanldes delegated token transfer', function(){
-		return DappToken.deployed().then(function(instance) {
+		return HearcToken.deployed().then(function(instance) {
 			tokenInstance = instance;
 			fromAccount = accounts[2];
 			toAccount = accounts[3];

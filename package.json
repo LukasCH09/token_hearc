@@ -1,7 +1,7 @@
 {
-	"name": "dapp-token-ale",
+	"name": "hearc-token-ale",
 	"version": "1.0.0",
-	"description": "Dapp Token Sale ICO",
+	"description": "Hearc Token Sale ICO",
 	"main": "truffle.js",
 	"directories": {
 		"test": "test"

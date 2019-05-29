@@ -1,11 +1,11 @@
 pragma solidity ^0.5.0;
 
-import "./DappToken.sol";
+import "./HearcToken.sol";
 import "./SafeMath.sol";
 
-contract DappTokenSale {
+contract HearcTokenSale {
 	address admin;
-	DappToken public tokenContract;
+	HearcToken public tokenContract;
 	//SafeMath public tokenMath;
 	uint256 public tokenPrice;
 	uint256 public tokensSold;
@@ -17,7 +17,7 @@ contract DappTokenSale {
 		uint256 _amount
 		);
 
-	constructor(DappToken _tokenContract, uint256 _tokenPrice) public {
+	constructor(HearcToken _tokenContract, uint256 _tokenPrice) public {
 		admin = msg.sender;
 		tokenContract = _tokenContract;
 		tokenPrice = _tokenPrice;

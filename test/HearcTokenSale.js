@@ -1,7 +1,7 @@
-const DappTokenSale = artifacts.require("./DappTokenSale.sol");
-const DappToken = artifacts.require("./DappToken.sol");
+const HearcTokenSale = artifacts.require("./HearcTokenSale.sol");
+const HearcToken = artifacts.require("./HearcToken.sol");
 
-contract('DappTokenSale', function(accounts) {
+contract('HearcTokenSale', function(accounts) {
 	var tokenSaleInstance;
 	var tokenInstance;
 	var admin = accounts[0];
@@ -11,7 +11,7 @@ contract('DappTokenSale', function(accounts) {
 	var numberOfTokens;
 
 	it('initializes the contract with the correct values', function() {
-		return DappTokenSale.deployed().then(function(instance) {
+		return HearcTokenSale.deployed().then(function(instance) {
 			tokenSaleInstance = instance;
 			return tokenSaleInstance.address;
 		}).then(function(address){
@@ -26,10 +26,10 @@ contract('DappTokenSale', function(accounts) {
 	});
 
 	it('facilitates token buying', function() {
-		return DappToken.deployed().then(function(instance) {
+		return HearcToken.deployed().then(function(instance) {
 			// Grab first the tokenInstance
 			tokenInstance = instance;
-			return DappTokenSale.deployed();
+			return HearcTokenSale.deployed();
 		}).then(function(instance) {
 			// Then grab the TokenSaleInstance
 			tokenSaleInstance = instance;
@@ -63,10 +63,10 @@ contract('DappTokenSale', function(accounts) {
 
 
 	it('ends token sale', function() {
-		return DappToken.deployed().then(function(instance) {
+		return HearcToken.deployed().then(function(instance) {
 			// Grab first the tokenInstance
 			tokenInstance = instance;
-			return DappTokenSale.deployed();
+			return HearcTokenSale.deployed();
 		}).then(function(instance) {
 			// Then grab the TokenSaleInstance
 			tokenSaleInstance = instance;

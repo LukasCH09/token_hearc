@@ -1,0 +1,17 @@
+{
+	"name": "hearc-token-ale",
+	"version": "1.0.0",
+	"description": "Hearc Token Sale ICO",
+	"main": "truffle.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"dev": "lite-server"
+	},
+	"author": "Lukas",
+	"licence": "ISC",
+	"devDependencies": {
+		"lite-server": "^2.3.0"
+	}
+}
